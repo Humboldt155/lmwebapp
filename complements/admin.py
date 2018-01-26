@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Department
+from .models import Model
+from .models import Attribute
+from .models import Value
+
+admin.site.register(Department)
+admin.site.register(Model)
+admin.site.register(Attribute)
+admin.site.register(Value)
+
