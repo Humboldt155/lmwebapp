@@ -25,7 +25,7 @@ SECRET_KEY = '%28o0dn-^-)4xprtb%s=#g)actqvl_n=wq8)tt8$4lv$15)-op'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'www.lmwebapp.com']
 
 
 # Application definition
