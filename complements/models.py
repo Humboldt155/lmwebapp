@@ -63,16 +63,3 @@ class Link(models.Model):
 
     def __str__(self):
         return self.link_name
-
-"""
-#LMCodeValue
-class LMCodeValue(models.Model):
-    lmcode_id = models.ForeignKey(LMCode)
-    attribute_id = models.ForeignKey(Attribute)
-    value_id = models.ForeignKey(Value, default=None)
-    value_not_limited = models.DecimalField(default=None)
-    name = str(lmcode_id) + " - " + str(attribute_id)
-
-    def __str__(self):
-        return self.name
-"""
