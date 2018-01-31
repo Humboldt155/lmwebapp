@@ -34,7 +34,7 @@ class Model(models.Model):
 # Attribute
 class Attribute(models.Model):
     attribute_id = models.CharField(max_length=9, primary_key=True, unique=True)
-    attribute_is_limited = models.BooleanField()
+    attribute_is_open = models.BooleanField()
     attribute_fr_name = models.CharField(max_length=200)
     attribute_en_name = models.CharField(max_length=200)
     attribute_ru_name = models.CharField(max_length=200)
@@ -95,3 +95,7 @@ class Link(models.Model):
     def __str__(self):
         return self.link_name
 
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
