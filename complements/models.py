@@ -96,6 +96,22 @@ class Link(models.Model):
         return self.link_name
 
 class Document(models.Model):
+    DOC_TYPES = (
+        ('BDD', 'BDD_RMS'),
+        ('LINK', 'Link file'),
+    )
+    type = models.CharField(max_length=5,
+                            unique=True,
+                            primary_key=True,
+                            default='BDD',
+                            choices=DOC_TYPES)
     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.type
+
+    class Meta:
+        verbose_name = "документ Excel"
+        verbose_name_plural = "документы Excel"
