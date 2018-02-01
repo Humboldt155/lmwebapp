@@ -7,7 +7,6 @@ def model_correction(request):
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
     else:
         form = DocumentForm()
     return render(request, 'complements/model_correction.html', {
