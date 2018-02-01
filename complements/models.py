@@ -55,7 +55,7 @@ class SubDepartmentAdeo(models.Model):
 class ModelGroupAdeo(models.Model):
     model_group_adeo_id = models.CharField(max_length=14, primary_key=True, unique=True)
     model_group_adeo_name = models.CharField(max_length=60)
-    su_department_adeo = models.ForeignKey(SubDepartmentAdeo)
+    sub_department_adeo = models.ForeignKey(SubDepartmentAdeo)
 
     class Meta:
         ordering = ["model_group_adeo_id"]
