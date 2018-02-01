@@ -8,12 +8,62 @@ class Department(models.Model):
 
     class Meta:
         ordering = ["department_id"]
-        verbose_name = "отдел"
-        verbose_name_plural = "отделы"
+        verbose_name = "LMRussia отдел"
+        verbose_name_plural = "LMRussia_1 отделы"
 
     def __str__(self):
         return self.department_id
 
+class SubDepartment(models.Model):
+    sub_department_id = models.CharField(max_length=4, primary_key=True, unique=True)
+    sub_department_name = models.CharField(max_length=60)
+    department = models.ForeignKey(Department)
+
+    class Meta:
+        ordering = ["sub_department_id"]
+        verbose_name = "LMRussia подотдел"
+        verbose_name_plural = "LMRussia_2 потделы"
+
+    def __str__(self):
+        return self.sub_department_id
+
+class DepartmentAdeo(models.Model):
+    department_adeo_id = models.CharField(max_length=6, primary_key=True, unique=True)
+    department_adeo_name = models.CharField(max_length=40)
+
+    class Meta:
+        ordering = ["department_adeo_id"]
+        verbose_name = "Adeo отдел"
+        verbose_name_plural = "Adeo_1 отделы"
+
+    def __str__(self):
+        return self.department_adeo_id
+
+class SubDepartmentAdeo(models.Model):
+    sub_department_adeo_id = models.CharField(max_length=12, primary_key=True, unique=True)
+    sub_department_adeo_name = models.CharField(max_length=60)
+    department_adeo = models.ForeignKey(DepartmentAdeo)
+
+    class Meta:
+        ordering = ["sub_department_adeo_id"]
+        verbose_name = "Adeo подотдел"
+        verbose_name_plural = "Adeo_2 потделы"
+
+    def __str__(self):
+        return self.sub_department_adeo_id
+
+class ModelGroupAdeo(models.Model):
+    model_group_adeo_id = models.CharField(max_length=14, primary_key=True, unique=True)
+    model_group_adeo_name = models.CharField(max_length=60)
+    su_department_adeo = models.ForeignKey(SubDepartmentAdeo)
+
+    class Meta:
+        ordering = ["model_group_adeo_id"]
+        verbose_name = "Adeo группа моделей"
+        verbose_name_plural = "Adeo_3 группы моделей"
+
+    def __str__(self):
+        return self.model_group_adeo_id
 
 # Model Adeo
 class Model(models.Model):
@@ -21,11 +71,14 @@ class Model(models.Model):
     model_fr_name = models.CharField(max_length=200)
     model_en_name = models.CharField(max_length=200)
     model_ru_name = models.CharField(max_length=200)
+    model_department_adeo = models.ForeignKey(DepartmentAdeo)
+    model_sub_department_adeo = models.ForeignKey(SubDepartmentAdeo)
+    model_group_adeo = models.ForeignKey(ModelGroupAdeo)
 
     class Meta:
         ordering = ["model_id"]
         verbose_name = "модель Адео"
-        verbose_name_plural = "модели Адео"
+        verbose_name_plural = "Structure_1 модели Адео"
 
     def __str__(self):
         return self.model_id
@@ -42,7 +95,7 @@ class Attribute(models.Model):
     class Meta:
         ordering = ["attribute_id"]
         verbose_name = "атрибут"
-        verbose_name_plural = "атрибуты"
+        verbose_name_plural = "Structure_2 атрибуты"
 
     def __str__(self):
         return self.attribute_id
@@ -58,7 +111,7 @@ class Value(models.Model):
     class Meta:
         ordering = ["value_id"]
         verbose_name = "значение атрибута"
-        verbose_name_plural = "значения атрибутов"
+        verbose_name_plural = "Structure_3 значения атрибутов"
 
     def __str__(self):
         return self.value_id
@@ -70,11 +123,12 @@ class LMCode(models.Model):
     lmcode_avs = models.DateField()
     lmcode_model = models.ForeignKey(Model)
     lmcode_department = models.ForeignKey(Department)
+    lmcode_sub_department = models.ForeignKey(SubDepartment)
 
     class Meta:
         ordering = ["lmcode_id"]
         verbose_name = "lm код"
-        verbose_name_plural = "lm коды"
+        verbose_name_plural = "Structure_4 lm коды"
 
     def __str__(self):
         return self.lmcode_id
