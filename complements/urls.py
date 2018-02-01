@@ -1,6 +1,6 @@
 from django.conf.urls import url
-from . import views
+from complements.views import index
 
 urlpatterns = [
-    url(r'^$', views.model_correction, name='model_correction'),
+    url(r'^$', index, name='index'),
 ]

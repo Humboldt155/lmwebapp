@@ -1,14 +1,16 @@
-from django.shortcuts import render, redirect
-from .forms import DocumentForm
+from django.shortcuts import render
+from .models import Department, \
+                    SubDepartment, \
+                    Attribute, \
+                    Value, \
+                    DepartmentAdeo, \
+                    SubDepartmentAdeo, \
+                    ModelGroupAdeo, \
+                    LMCode, \
+                    Document
 
 # Create your views here.
-def model_correction(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-    else:
-        form = DocumentForm()
-    return render(request, 'complements/model_correction.html', {
-        'form': form
-    })
+
+def index(request):
+
+    return render(request, 'index.html')
